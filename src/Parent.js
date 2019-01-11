@@ -1,5 +1,6 @@
 import React from 'react';
 import {Child} from './Child';
+import { MishMash } from './MishMash';
 
 class Parent extends React.Component {
   constructor() {
@@ -8,15 +9,20 @@ class Parent extends React.Component {
       eyeColor: "brown",
       name: "adult",
       hairColor: "black",
-      childsName: "Winnie"
+      childsName: "Winnie",
+      grandChildHairColor: "brown"
     }
 
-    // this.handleChildNameChange = this.handleChildNameChange.bind(this)
+    // this.handleGrandChildHairChange = this.handleGrandChildHairChange.bind(this)
   }
 
-  handleChildNameChange = (event) => {
-    this.setState({ childsName: event.target.value})
-  }
+handleChange = (event) => {
+  this.setState({[event.target.name]: event.target.value})
+}
+  //
+  // handleChildNameChange = (event) => {
+  //   this.setState({ childsName: event.target.value})
+  // }
 
   render() {
     return(
@@ -25,7 +31,14 @@ class Parent extends React.Component {
       <br />
       <Child eyeColor={this.state.eyeColor}
       name={this.state.childsName}
-      changeMyName={this.handleChildNameChange}/>
+      handleChange={this.handleChange}
+      grandChildHairColor={this.state.grandChildHairColor}
+      />
+      <br />
+      <br />
+      <MishMash name={this.state.name}
+        childsName={this.state.childsName}
+        grandChildHairColor={this.state.grandChildHairColor}/>
       </>
     )
   }
